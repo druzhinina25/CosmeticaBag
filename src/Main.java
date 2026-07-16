@@ -17,6 +17,53 @@ public class Main {
             System.out.println();
         }
     }
+    private static Cosmetics randomObj() {
+        // случайный тип 0-ДЕКОРАТИВНАЯ 1 - УХОДОВАЯ 2 - ПАРФЮМЕРИЯ
+        int type = RANDOM.nextInt(3);
+        int size = RANDOM.nextInt(4)+1;
+
+        switch (type) {
+            case 0:
+                String nameDec = DecorativeCosmetics.NAMES[RANDOM.nextInt(DecorativeCosmetics.NAMES.length)];
+                String quality = DecorativeCosmetics.QUALITIES[RANDOM.nextInt(DecorativeCosmetics.QUALITIES.length)];
+                return new DecorativeCosmetics(nameDec, size, quality);
+            case 1:
+                String nameSkin = SkincareCosmetics.NAMES[RANDOM.nextInt(SkincareCosmetics.NAMES.length)];
+                String qualitySkin = SkincareCosmetics.QUALITIES[RANDOM.nextInt(SkincareCosmetics.QUALITIES.length)];
+                return new SkincareCosmetics(nameSkin, size, qualitySkin);
+            case 2:
+                String namePerf = Perfumery.NAMES[RANDOM.nextInt(Perfumery.NAMES.length)];
+                String aroma = Perfumery.AROMA_TYPES[RANDOM.nextInt(Perfumery.AROMA_TYPES.length)];
+                return new Perfumery(namePerf, size, aroma);
+
+        }
+        return null;
+    }
+    private static CosmeticsBag randomBag(Scanner scanner) {
+
+        System.out.print("Укажите вместимость косметички: ");
+        int capacity = scanner.nextInt();
+        scanner.nextLine();
+        CosmeticsBag bag = new CosmeticsBag(capacity);
+        while(true){
+            System.out.print("Укажите количество средств в косметичке: ");
+            int numb = scanner.nextInt();
+            scanner.nextLine();
+            if(numb < 1  || numb > capacity) {
+                System.out.println("Ошибка! Введите число от 1 до " + capacity);
+            } else {
+                System.out.println("Генерирую " + numb + " случайных средств...");
+                for(int i = 0; i < numb; i++) {
+                    Cosmetics obj = randomObj();
+                    bag.addObject(obj);
+                }
+                System.out.println("Косметичка создана!");
+                bag.showContents();
+                break;
+            }
+        } return bag;
+
+    }
     //добавление нового средства в косметичку
     private static void addNewObject(CosmeticsBag bag) {
         System.out.println("Добавление средства");
