@@ -46,7 +46,7 @@ public class CosmeticsBag {
         for(Cosmetics object : objects) {
             if(object.getName().equalsIgnoreCase(name)){
                 objects.remove(object);
-                System.out.println("средство" + name + " удалено");
+                System.out.println("средство " + name + " удалено");
                 return object;
             }
            // else{

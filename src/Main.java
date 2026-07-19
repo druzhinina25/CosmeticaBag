@@ -161,12 +161,11 @@ public class Main {
         System.out.println("Выберете действие:");
         System.out.println("1. Создать новую косметичку");
         System.out.println("2. Загрузить косметичку из файла");
+        System.out.print("Ваш выбор: ");
         int startChoice = scanner.nextInt();
         scanner.nextLine();
         if (startChoice == 1) {
-            // новая косметичка со случайным наполнением
-
-            // рандом
+            myBag = randomBag(scanner);
         } else { // загрузить косметичку из файла
             System.out.println("Загрузка косметички из файла");
 
